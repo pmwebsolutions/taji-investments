@@ -8,7 +8,8 @@ function checkUser($data){
 $db=$GLOBALS['db'];
 $username=mysqli_real_escape_string($db,$data['username']);
 $password=mysqli_real_escape_string($db,$data['password']);
-$query="SELECT * FROM users WHERE username='$username'AND password='$password'";
+$safe_pass=md5($password);
+$query="SELECT * FROM users WHERE username='$username'AND password='$safe_pass'";
 $runQuery=mysqli_query($db,$query);
 $user=mysqli_fetch_all($runQuery,MYSQLI_ASSOC);
 if(count($user)>0)  {
@@ -26,8 +27,9 @@ $query="SELECT * FROM users WHERE username='$username' AND Verified='1'";
 $runQuery=mysqli_query($db,$query);
 $user=mysqli_fetch_all($runQuery,MYSQLI_ASSOC);
 if(count($user)>0 )  {
-			$_SESSION['userdata']=$user;
+	$_SESSION['userdata']=$user;
 	$_SESSION['userIsLoggedIn']=true;
+	$_SESSION['auth'] = 'verified';
 	header('location:home.php');
 		}else{
 			header('location:activation.php');
@@ -64,7 +66,7 @@ function checkEmail($data){
     
         return false;
     }
-    }
+}
 	//update wallet after investing
 function invest(){
 	$db=$GLOBALS['db'];
@@ -80,7 +82,7 @@ function invest(){
 
 			$sql = "UPDATE `wallet` SET `user_deposit` = (`user_deposit`-$Amount) WHERE `username` = '$user' ";
 
-			$query = mysqli_query($db, $sql) or die(mysqli_error($con));
+			$query = mysqli_query($db, $sql);
 		if ( $query ) {
 			return true;
 			
@@ -206,8 +208,10 @@ function register($data){
     
     if(count($user['errors'])<1){
     $user_code = genUserCode(); 
+	$safe_pass=md5($password);
+	$safe_pass1=md5($password1);
     $query="INSERT INTO users(firstname,lastname,username,number,email,password,password1,ref_code,user_code) ";
-    $query.="VALUES('$firstname','$lastname','$username','$number','$email','$password','$password1','$ref_code','$user_code')";
+    $query.="VALUES('$firstname','$lastname','$username','$number','$email','$safe_pass','$safe_pass1','$ref_code','$user_code')";
     $runQuery = mysqli_query($db,$query);
     if($runQuery){
         $user['success']="user is created successfully !";
@@ -232,17 +236,7 @@ function pendingInvestment($kata){
 	return $user;
 	
     }
-/* function Withdrawamt($mata){
-	$db=$GLOBALS['db'];
-	$username=$mata['username'];
-	$query = "select sum(Amount) AS tot_with from withdrawals WHERE username = '$username' ";//AND Status='Processing'
-	$runQuery=mysqli_query($db,$query);
-	//$user = mysqli_fetch_all($runQuery,MYSQLI_ASSOC) ?? array();
-	$tot= $values['tot_with'];
-	return $tot;//runQuery//user
-	
-    }   */
-	
+
 	function Withdrawtot($rata){
 	$db=$GLOBALS['db'];
 	$username=$rata['username'];
@@ -263,3 +257,26 @@ function pendingInvestment($kata){
 	return $user;
 	
     }
+	
+//this is for checking if the user is verified
+function sendMail(){
+$db=$GLOBALS['db'];
+$fin=array();
+$fin['errors']=array();
+$name = $_POST['my_name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+$query="INSERT INTO messages(name,email,meso)VALUES('$name','$email','$message')";
+$runQuery=mysqli_query($db,$query);
+if($runQuery){
+	$fin['success']="Message has been sent successfully !";
+	//return true;
+	//header('location:contact.php');
+}else{
+	$fin['errors'][]="Something went wrong !";
+	//return false;
+	//header('location:contact.php');
+}
+
+return $fin;
+}

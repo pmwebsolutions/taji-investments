@@ -10,8 +10,17 @@ if(isset($_SESSION['userdata'])){
     
 }
 
-//this is for functions
-
+//this is for contacting us
+if(isset($_GET['contact_us'])){
+    $fin = sendMail($_POST);
+    if(isset($fin['success'])){
+        $_SESSION['msg'][]=$fin['success'];
+		header('location:../contact.php');
+    }else{
+        $_SESSION['msg']=$fin['errors'];
+    header('location:../contact.php');
+	}
+}
 
 
 //this is for register new user
@@ -34,14 +43,13 @@ if(isset($_GET['login'])){
 							header('location:../?login');
 						}else{
 							$user = checkUser($_POST);
-						if(is_array($user) ){
-							checkVerified();
-						}else{
-							$_SESSION['msg'][]='Incorrect username/Password !';
-							header('location:../?login');
-						}	
-							$_SESSION['auth'] = 'verified';
-							//$_SESSION['expire'] = time();
+							if(is_array($user) ){
+								checkVerified();
+							}else{
+								$_SESSION['msg'][]='Incorrect username/Password !';
+								header('location:../?login');
+							}	
+							
 							$_SESSION['userdata']=$user;
 							$_SESSION['username']=$_POST['username'];
 						} 	  

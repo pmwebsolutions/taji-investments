@@ -1,7 +1,8 @@
 <?php
-    include("function.inc.php");
-
-?>
+session_start();
+if(!isset($_SESSION['userIsLoggedIn'])){
+    header('location: ./index.php');
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,20 +38,20 @@
 include('dbcon.php');
 ?>
 </head>
- <?php session_start();
+ <?php 
 
 if(isset($_SESSION['userdata'])){
     $user = $_SESSION['userdata'][0];
     
 } 
- require('functions.php');
+ /*require('functions.php');
  $tarehe=date('F j, Y, g:i a',strtotime(mail1Date()));
 $message1 = mail1();
 //$message_count = fetchAllUnread();
-?>
+*/?>
 
 <style>
-.form?{
+.form{
 	 display:block;
 	 width:100%;
 	 height:calc(1.5em + .75rem + 2px);
@@ -230,10 +231,6 @@ $message1 = mail1();
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -293,6 +290,7 @@ if(isset($msg)){
 												echo $option;
 									while($row = mysqli_fetch_array($result)) {
 												$id=$row['username'];
+                                                $email=$row['email'];
 												
 												echo "<option value=". $id.">". $row['username']."</option>";
 												
@@ -323,22 +321,67 @@ if(isset($msg)){
 		<?php
 			if(isset($_POST["message"])){
 				include("dbcon.php");
-					if($_POST['subject']=='' || $_POST['comment']==''){
+					if($_POST['subject']=='' || $_POST['comment']=='' || $_POST['receiver']==''){
 						echo "<script>alert('All fields are required');
 							</script>";
 					}else{
 						$subject = $_POST['subject'];
 						$comment = $_POST['comment'];
-						$query = "INSERT INTO content(title, content)VALUES ('$subject', '$comment')";
+                        $receiver = $_POST['receiver'];
+						/*$query = "INSERT INTO content(title, content, receiver)VALUES ('$subject', '$comment','$receiver')";
 						$riz= mysqli_query($con, $query);
 							if($riz){
 								echo "<script>alert('Success!! Message Sent');</script>";
 							}else{
-								echo "<script>alert('Failed!! Message Not Sent');
+								echo "<script>alert('Failed!! Message Not Sent');</script>";
 							</script>";
-							}
-					}
-			}
+							}*/
+					/*}*/
+                    $output = $comment;
+                    $body = $output; 
+                    $sub = $subject;                
+                    $email_to = $email;
+                    $fromserver = "support@tajinvestments.org"; 
+                    require("vendor/phpmailer/PHPMailerAutoload.php");
+                    $mail = new PHPMailer();
+                    $mail->IsSMTP();
+                    $mail->Host = "mail.yourwebsite.com"; // Enter your host <--GMAIL.SMTP.COM-->
+                    $mail->SMTPAuth = true;
+                    $mail->SMTPSecure = 'tls';         //Enable implicit TLS encryption
+                    $mail->Port = 465;         //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                    $mail->Username = "noreply@gmail.com"; // GMAIL Client ID
+                    $mail->Password = "password"; //GMAIL Client Secret
+                    $mail->IsHTML(true);
+                    $mail->From = "support@tajinvestments.org";
+                    $mail->FromName = "TAJI INVESTMENTS";
+                    $mail->Sender = $fromserver; // indicates ReturnPath header
+                    $mail->Subject = $sub;
+                    $mail->Body = $body;
+                    $mail->AddAddress($email_to);
+                    if(!$mail->Send()){
+                        /*$class='class="alert alert-danger"';
+                        $role='role="alert"';
+                    echo "<div ".$class." ".$role.">Mailer Error...Please try again</div>";*/
+                    echo "<script>alert('Success!! Message Sent');</script>";
+                    }else{
+                        /*$class='class="alert alert-success"';
+                        $role='role="alert"';
+                    echo "<div ".$class." ".$role.">
+                    <p>A link has been sent to your email together with instructions on how to reset your password.</p>
+                    <p>The link is valid for only 30 minutes.</p>
+                    </div>";*/
+                    echo "<script>alert('Failed!! Message Not Sent');</script>";
+                    }
+                    }
+            }	
+
+
+
+
+
+
+
+			
 			
 		?>
 	</div>
@@ -348,7 +391,7 @@ if(isset($msg)){
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Taji Investments 2022</span>
+                        <span>Taji Investments&copy; 2022</span>
                     </div>
                 </div>
             </footer>
@@ -376,16 +419,7 @@ if(isset($msg)){
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-				 
-				
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-				
-				<a href="#" class="btn btn-center btn-success btn-circle btn-lg">
-                                        <i class="fas fa-check"></i>
-                                    </a>
-				
-				
-				</div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="process.php?logout">Logout</a>

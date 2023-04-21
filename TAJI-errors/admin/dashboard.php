@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(!isset($_SESSION['userIsLoggedIn'])){
+    header('location: ./index.php');
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,12 +29,9 @@
 
 <script type="text/javascript" charset="utf-8" language="javascript" src="js/jquery.dataTables.js"></script>
 <script type="text/javascript" charset="utf-8" language="javascript" src="/sizla/Multi_Edit/js/DT_bootstrap.js"></script>
+</head>
 <?php 
 include('dbcon.php');
-?>
-</head>
- <?php session_start();
-
 if(isset($_SESSION['userdata'])){
     $user = $_SESSION['userdata'][0];
     
@@ -56,11 +58,11 @@ $withdrawT= Withdrawtot();
         <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-smile-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">TAJINVESTMENTS <sup></sup></div>
+                <div class="sidebar-brand-text mx-3">TAJINVESTMENTS</div>
             </a>
 
             <!-- Divider -->
@@ -190,124 +192,49 @@ $withdrawT= Withdrawtot();
                                 </form>
                             </div>
                         </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-
+						<li class="nav-item dropdown no-arrow">
+        <?php 
+        $sql ="SELECT * from messages where status='unread'  ORDER BY id DESC ";
+        $query = mysqli_query($db,$sql);
+		$results=mysqli_fetch_all($query);
+		$newmails=mysqli_num_rows($query);
+        ?>
+        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" data-toggle="dropdown">
+          <i class="fas fa-bell text-dark"></i>
+          <span class="count-symbol text-dark"><sup class="text-danger"> <?php echo $newmails;?></sup> Messages</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+          <h6 class="p-3 mb-0">You have <?php echo $newmails;?> new notification<?php if($newmails >1){echo 's';}?></h6>
+          <div class="dropdown-divider"></div>
+          <?php 
+          $sql ="SELECT * from messages  where status='unread'  ORDER BY ID DESC LIMIT 3";
+          $query = mysqli_query($db,$sql);
+          $results=mysqli_fetch_all($query);
+		  $mail=mysqli_fetch_assoc($query);
+          ?>
+          <?php if (mysqli_num_rows($query) > 0)
+          {
+            foreach($results as $row)
+            {              
+              ?>
+              <a class="dropdown-item preview-item">
+                <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                  <p class="preview-subject font-weight-normal mb-1"> Name: <?php  echo substr($row[1],0,5).'...';?></p>
+				  <p class="preview-subject font-weight-normal text-gray ellipsis mb-0"> Message: <?php  echo substr($row[3],0,7).'...';?></p>
+                </div>
+				
+			</a>
+			<div class="dropdown-divider"></div>
+              <?php 
+            }
+          } else {?>
+            <a class="dropdown-item">No New Notification(s) Received</a>
+            <?php
+          } ?>
+          
+          <h6 class="p-3 mb-0 text-center"> <a href="notifications.php">See all new notification<?php if($newmails >1){echo 's';}?></a></h6>
+        </div>
+      </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -321,14 +248,10 @@ $withdrawT= Withdrawtot();
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profileModal">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
+                                </a><?php include 'modals.php'; ?>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -338,7 +261,7 @@ $withdrawT= Withdrawtot();
                         </li>
 
                     </ul>
-
+                    
                 </nav>
                 <!-- End of Topbar -->
 
@@ -350,14 +273,13 @@ $withdrawT= Withdrawtot();
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">USER WALLETS
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Tot user deposits</div><?php 
-												$conn =mysqli_connect("localhost","root","","twiga2");
-												$query3 = mysqli_query($conn,"select sum(user_deposit) AS 'tot_bal3' from wallet");
+												$query3 = mysqli_query($db,"select sum(user_deposit) AS 'tot_bal3' from wallet");
 												$values3=mysqli_fetch_assoc($query3);
 												$fullbal3= $values3['tot_bal3'];
 												//$bal= $row['affiliate'] + $row['investment'];
@@ -372,15 +294,14 @@ $withdrawT= Withdrawtot();
                                 </div>
                             </div>
                         </div>
-<div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-dark shadow h-100 py-2">
+						<div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">USER WALLETS
-                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 tot Referal Earnings</div><?php 
-												$conn =mysqli_connect("localhost","root","","twiga2");
-												$query = mysqli_query($conn,"select sum(affiliate) AS 'tot_bal1' from wallet");
+												$query = mysqli_query($db,"select sum(affiliate) AS 'tot_bal1' from wallet");
 												$values=mysqli_fetch_assoc($query);
 												$fullbal= $values['tot_bal1'];
 												?>
@@ -395,16 +316,13 @@ $withdrawT= Withdrawtot();
                             </div>
                         </div>
 						<div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-dark shadow h-100 py-2">
+                            <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">USER WALLETS
-                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 tot invest Earnings</div><?php 
-												$conn =mysqli_connect("localhost","root","","twiga2");
-												
-												$query2 = mysqli_query($conn,"select sum(investment) AS 'tot_bal2' from wallet");
-												
+												$query2 = mysqli_query($db,"select sum(investment) AS 'tot_bal2' from wallet");
 												$values=mysqli_fetch_assoc($query);
 												$values2=mysqli_fetch_assoc($query2);
 												$fullbal2= $values2['tot_bal2'];
@@ -427,15 +345,18 @@ $withdrawT= Withdrawtot();
                                         <div class="col mr-2">SYSTEM
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Tot. Amount Withdrawn</div><?php
-									$conn =mysqli_connect("localhost","root","","twiga2");
-									
 									$query = "select sum(Amount) AS 'tot_with' from withdrawals WHERE Status='Processing'";
 									$runQuery=mysqli_query($db,$query);
 									$values=mysqli_fetch_assoc($runQuery);
 									$tot= $values['tot_with'];
 									?>
-                                            <div class="h4 mb-0 font-weight-bold text-gray-800">KSH <?php echo $tot ?></div>
-											
+                                            <div class="h4 mb-0 font-weight-bold text-gray-800">KSH <?php if ($tot>0){
+												echo $tot ;
+											}
+											else { 
+												echo 0 ;
+											}?>
+											</div>											
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-download fa-2x text-gray-300"></i>
@@ -447,13 +368,12 @@ $withdrawT= Withdrawtot();
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">SYSTEM
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Deposits
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Deposits
                                             </div><?php
-									$conn =mysqli_connect("localhost","root","","twiga2");
 									$username = $user['username'];
 									$query = "select sum(Amount) AS 'tot_depo' from deposits WHERE status='Processed'";
 									$runQuery=mysqli_query($db,$query);
@@ -462,7 +382,12 @@ $withdrawT= Withdrawtot();
 									?>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h4 mb-0 mr-3 font-weight-bold text-gray-800">KSH <?php echo $total ?></div>
+                                                    <div class="h4 mb-0 mr-3 font-weight-bold text-gray-800">KSH <?php if($total>0){
+												echo $total ;
+											}
+											else { 
+												echo 0 ;
+											} ?></div>
                                                 </div>
                                                 
                                             </div>
@@ -494,11 +419,11 @@ $withdrawT= Withdrawtot();
                         </div>
 						
 						<div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-dark shadow h-100 py-2">
+                            <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">SYSTEM
-                                            <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Referal Earnings</div>
                                             <div class="h4 mb-0 font-weight-bold text-gray-800">KSH <?=count($reflist)*150?></div>
                                         </div>
@@ -512,11 +437,11 @@ $withdrawT= Withdrawtot();
                         </div>
 						
 						<div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card border-left-warning shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">SYSTEM
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Pending Investments</div>
                                             <div class="h4 mb-0 font-weight-bold text-gray-800"> <?=count($pending)?></div>
                                         </div>
@@ -534,7 +459,6 @@ $withdrawT= Withdrawtot();
                                         <div class="col mr-2">SYSTEM
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Pending Invested Returns</div><?php
-									$conn =mysqli_connect("localhost","root","","twiga2");
 									$username = $user['username'];
 									$query = "select sum(Expectedamount) AS 'tot_inv' from investments WHERE Status='Matured'";
 									$runQuery=mysqli_query($db,$query);
@@ -558,11 +482,11 @@ $withdrawT= Withdrawtot();
                             </div>
                         </div>
 						<div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">SYSTEM
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Total Withdrawals</div>
                                             <div class="h4 mb-0 font-weight-bold text-gray-800"> <?=count($withdrawT)?></div>
                                         </div>
@@ -574,11 +498,11 @@ $withdrawT= Withdrawtot();
                             </div>
                         </div>
 						<div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">SYSTEM
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Total Verified Users</div>
                                             <div class="h4 mb-0 font-weight-bold text-gray-800"> <?=count($verified)?></div>
                                         </div>
@@ -590,11 +514,11 @@ $withdrawT= Withdrawtot();
                             </div>
                         </div>
 						<div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-danger shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">SYSTEM
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Total Unverified Users</div>
                                             <div class="h4 mb-0 font-weight-bold text-gray-800"> <?=count($unverified)?></div>
                                         </div>
@@ -621,7 +545,7 @@ $withdrawT= Withdrawtot();
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Taji Investments 2022</span>
+                        <span>Taji Investments&copy;  2023</span>
                     </div>
                 </div>
             </footer>
@@ -649,16 +573,7 @@ $withdrawT= Withdrawtot();
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-				 
-				
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-				
-				<a href="#" class="btn btn-center btn-success btn-circle btn-lg">
-                                        <i class="fas fa-check"></i>
-                                    </a>
-				
-				
-				</div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="process.php?logout">Logout</a>
@@ -666,6 +581,53 @@ $withdrawT= Withdrawtot();
             </div>
         </div>
     </div>
+<!-- update_admin_wallet modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"><center>
+    <div class="modal-dialog">
+        <div class="modal-content">
+          	<div class="modal-header">
+            	<h4 class="modal-title"><b>Admin Profile Update</b></h4>
+          	</div><?php
+		include 'dbcon.php';
+        $user = $_SESSION['username'];
+        $sql = "select * from `admin` where `username`='$user'";
+        $query = mysqli_query($con,$sql);
+        if($query){
+            $row=mysqli_fetch_array($query);
+            $name= $row['username'];
+            $pass= $row['password'];
+            $_SESSION['oldpass']= $pass;
+           ?>
+          	<div class="modal-body">
+            	<form class="form-horizontal" method="POST" action="profile_update.php" enctype="multipart/form-data">
+          		<div class="form-group">
+                  	<label for="email" class="col-sm-3 control-label">Username</label>
+                  	<div class="col-sm-9">
+                    	<input type="text" class="form-control" id="username" name="username" value="<?php echo $name; ?>">
+                  	</div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-9"> 
+                      <input type="password" class="form-control" id="password" name="password" value="<?php echo $pass; ?>">
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="curr_password" class="col-sm-3 control-label">Current Password:</label>
+                    <div class="col-sm-9">
+                      <input type="password" class="form-control" id="curr_password" name="curr_password" placeholder="Input current password to save changes" required>
+                    </div>
+                </div>
+          	</div><?php } ?>
+          	<div class="modal-footer">
+            	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"> Close</button>
+            	<button type="submit" class="btn btn-success btn-flat" name="save"> Save</button>
+            	</form>
+          	</div>
+        </div>
+    </div></center>
+</div>
 	
 
     <!-- Bootstrap core JavaScript-->
@@ -686,5 +648,4 @@ $withdrawT= Withdrawtot();
     <script src="js/demo/chart-pie-demo.js"></script>
 	<script src="js/zoza.js"></script>
 </body>
-
 </html>

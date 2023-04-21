@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(!isset($_SESSION['userIsLoggedIn'])){
+    header('location: ./index.php');
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,10 +33,7 @@
 include('dbcon.php');
 ?>
 </head>
- <?php session_start();
-?>
- 
-<body id="page-top">
+ <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">

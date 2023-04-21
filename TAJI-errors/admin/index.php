@@ -10,7 +10,7 @@
     <meta name="author" content="">
       <link rel="shortcut icon" type="image/x-icon" href="user/assets/images/brand/Taji.PNG" />
     
-    <title>Taji - Register</title>
+    <title>Taji - Admin Centre</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

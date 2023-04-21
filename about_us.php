@@ -64,11 +64,11 @@ background-color: #333;
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
             </button>
-				<div id="myLinks">
+				<!--div id="myLinks">
     <a href="index.php">News</a>
     <a href="contact.php">Contact</a>
     <a href="how_it_works.php">HOW IT WORKS</a>
-  </div>
+  </div-->
   
                 <a class="navbar-brand" style="color:white" href="index.php"><img class="logo-custom" src="images/Taji.png" alt="" />TAJI INVESTMENTS</a>
             </div>
@@ -93,7 +93,7 @@ background-color: #333;
                  <div class="col-lg-8 col-lg-offset-2 col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2">
                      <h1 data-scroll-reveal="enter from the bottom after 0.2s"  class="header-line">ABOUT US </h1>
                      <p data-scroll-reveal="enter from the bottom after 0.3s" >
-Taji Investmentss is majorly founded to eradicate poverty in our community. This website is based on peer-to-peer donation. Top Players is a community created to help each get financial help. Donate to receive donations from others. Scroll down to see how it works.                          </p>
+Taji Investments is majorly founded to eradicate poverty in our community. This website is based on peer-to-peer donation. Top Players is a community created to help each get financial help. Donate to receive donations from others. Scroll down to see how it works.                          </p>
                  </div>
 
              </div>

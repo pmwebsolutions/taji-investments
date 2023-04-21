@@ -18,7 +18,7 @@ $N = count($id);
 		for($i=0; $i < $N; $i++){
 
 
-		 $query = mysqli_query($con,"select * from investments where investcode = '$id[$i]'") or die(mysqli_error());
+		 $query = mysqli_query($con,"select * from investments where investcode = '$id[$i]'");
 		 $values=mysqli_fetch_array($query);
 			if (is_array($values)) {
 				$user=$values['username'];

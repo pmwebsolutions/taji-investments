@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" style="color:white" href="index.php"><img class="logo-custom" src="images/Taji.png" alt=""  />TAJI INVESTMENTS</a>
+                <a class="navbar-brand" style="color:white" href="index.php"><img class="logo-custom" src="images/Taji.png" alt="..."  />TAJI INVESTMENTS</a>
             </div>
             <div class="navbar-collapse collapse move-me">
                 <ul class="nav navbar-nav navbar-right">
@@ -34,7 +34,7 @@
                      <li><a href="about_us.php">ABOUT US</a></li>
                     <li><a href="how_it_works.php">HOW IT WORKS</a></li>
                      <li><a href="testimonies.php">TESTIMONIES</a></li>
-                     <li><a href="contact.php">CONTACT</a></li>
+                     <li><a href="contact.php">CONTACT USs</a></li>
 					 
                 </ul>
             </div>
@@ -59,21 +59,40 @@
              </div>
              <!--/.HEADER LINE END-->
            <div class="row set-row-pad"  data-scroll-reveal="enter from the bottom after 0.5s" >
-           
-               
-                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                    <form>
+           <?php
+	
+require('account/functions.php');
+session_start();
+if(isset($_SESSION['msg'])){
+    $msg = $_SESSION['msg'];
+    unset($_SESSION['msg']);
+}
+
+
+if(isset($msg)){
+    foreach($msg as $message){
+        ?>
+<div class="alert alert-danger col-sm-8" role="alert">
+<?=$message?>
+</div>
+        <?php
+    }
+}
+    ?>
+				
+                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">				 
+                    <form method="POST" action="account/process.php?contact_us">
                         <div class="form-group">
-                            <input type="text" class="form-control "  required="required" placeholder="Your Name" />
+                            <input type="text" class="form-control" name="my_name" required="required" placeholder="Your Name" />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control " required="required"  placeholder="Your Email" />
+                            <input type="text" class="form-control" required="required" name="email" placeholder="Your Email" />
                         </div>
                         <div class="form-group">
-                            <textarea name="message" required="required" class="form-control" style="min-height: 150px;" placeholder="Message"></textarea>
+                            <textarea name="message" required="required" class="form-control" style="min-height:150px;" placeholder="Message"></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-info btn-block btn-lg">SUBMIT REQUEST</button>
+                            <button type="submit" id="send" name="send"  class="btn btn-info btn-block btn-lg">SUBMIT REQUEST</button>
                         </div>
 
                     </form>
@@ -95,7 +114,7 @@
                     <h2 ><strong>Our Location </strong></h2>
         <hr />
                     <div >
-                        <h4> </h4>
+                        
                         <h4>Kenya.</h4>
                         <h4><strong>Call:</strong> +254795168638  </h4>
                         <h4><strong>Email: </strong> </h4>
@@ -135,6 +154,30 @@
     <script src="js/jquery.easing.min.js"></script>
     <!--  Custom Scripts --> 
          <script src="js/custom.js"></script>
-		 
-				 </body>
-				 </html>
+<script>
+function checkuser(){
+	var name=document.getElementById("my_name").value;
+	var email=document.getElementById("email").value;
+	var meso=document.getElementById("message").value;
+	//if(name){
+		$.ajax({
+			type: 'post',
+			url: 'send.php',
+			//data: {	username:name,},
+			success: function(response){
+				$('#mail').html(response);
+				if(response =="Done"){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		});
+	//}else{
+	//	$('#username_status').html("");
+		//return false;
+	//}
+}
+</script>
+</body>
+</html>

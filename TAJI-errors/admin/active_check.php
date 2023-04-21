@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['userIsLoggedIn'])){
+    header('location: ./index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,12 +33,7 @@
 <?php 
 include('dbcon.php');
 ?>
-</head>
- <?php session_start();
-
-
-?>
- 
+</head> 
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -42,7 +43,7 @@ include('dbcon.php');
         <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-smile-wink"></i>
                 </div>

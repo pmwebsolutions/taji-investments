@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(!isset($_SESSION['userIsLoggedIn'])){
+    header('location:../index.php');
+}?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +33,6 @@
 include('database.php');
 ?>
 </head>
- <?php session_start();
-?>
- 
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -51,7 +53,7 @@ include('database.php');
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="home.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -103,9 +105,9 @@ include('database.php');
             </li>
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="https://chat.whatsapp.com/JhAmLA7vT9a6rzMiYpcA5q">
-                    <i class="fas fa-fw fa-phone"></i>
-                    <span>Join official Group</span></a>
+                <marquee><a class="nav-link" href="https://chat.whatsapp.com/JhAmLA7vT9a6rzMiYpcA5q">
+                    <img style="width:50px" src="img/WhatsAppGroup3.jpg" alt="...">
+                    <caption>Join Official Whatsapp Group</caption></a></marquee>
             </li>
 
             
@@ -117,7 +119,11 @@ include('database.php');
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
+            <div class="sidebar-card d-none d-lg-flex bg-gradient-success">
+                <img class="sidebar-card-illustration mb-2" src="img/lnm.jpg" alt="...">
+				<img class="sidebar-card-illustration mb-2" src="img/Till.png" alt="...">
+                
+            </div>
             
         </ul>
         <!-- End of Sidebar -->
@@ -176,133 +182,21 @@ include('database.php');
                                 </form>
                             </div>
                         </li>
-
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
+                        <?php 
+                        $name=$_SESSION['username'];
+                        $conn =mysqli_connect("localhost","root","","twiga2");
+                        $sql="select * from users where `username` = '$name'";
+                        $query= mysqli_query($conn,$sql);
+                        $dp=mysqli_fetch_array($query);?>
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo "Welcome " . $_SESSION['username']?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="user/<?php echo $dp['profilepic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -310,14 +204,6 @@ include('database.php');
                                 <a class="dropdown-item" href="profile_edit.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -340,131 +226,80 @@ include('database.php');
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
 		<h6 class="m-0 font-weight-bold text-primary">Change Profile Details</h6>
-		</div>
+		</div><?php
+		include 'database.php';
+        $user = $_SESSION['username'];
+        $sql = "select * from `users` where `username`='$user'";
+        $query = mysqli_query($db,$sql);
+        if($query){
+            $row=mysqli_fetch_array($query);
+            $fname= $row['firstname'];
+            $lname= $row['lastname'];            
+            $uname= $row['username'];
+            $pnumber= $row['number'];
+            $email= $row['email'];
+            $pass= $row['password'];
+            $dp= $row['profilepic'];
+           $_SESSION['oldpass']= $pass;
+           ?>
 	<div class="card-body">
 		<div class="table-responsive">
-<form class="form-auth" action="includes/profile-edit.inc.php" method="post" enctype="multipart/form-data" autocomplete="off">
-
-                
-
-                <div class="picCard text-center">
-                    <div class="avatar-upload">
-                        <div class="avatar-preview text-center">
-                            <div id="imagePreview" style="background-image: url( /users/uploads/ );">
-                            </div>
-                        </div>
-                        <div class="avatar-edit">
-                            <input name='avatar' id="avatar" class="fas fa-pencil" type='file' />
-                            <label for="avatar"></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <sub class="text-danger">
-                        <?php
-                            if (isset($_SESSION['ERRORS']['imageerror']))
-                                echo $_SESSION['ERRORS']['imageerror'];
-
-                        ?>
-                    </sub>
-                </div>
-                <div class="text-center">
-                    <small class="text-success font-weight-bold">
-                        <?php
-                            if (isset($_SESSION['STATUS']['editstatus']))
-                                echo $_SESSION['STATUS']['editstatus'];
-
-                        ?>
-                    </small>
-                </div>
-
-                <h6 class="h3 mt-3 mb-3 font-weight-normal text-muted text-center">Edit Your Profile</h6>
-
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="<?php echo xss_filter($_SESSION['username']); ?>" autocomplete="off">
-                    <sub class="text-danger">
-                        <?php
-                            if (isset($_SESSION['ERRORS']['usernameerror']))
-                                echo $_SESSION['ERRORS']['usernameerror'];
-
-                        ?>
-                    </sub>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="<?php echo xss_filter($_SESSION['email']); ?>">
-                    <sub class="text-danger">
-                        <?php
-                            if (isset($_SESSION['ERRORS']['emailerror']))
-                                echo $_SESSION['ERRORS']['emailerror'];
-
-                        ?>
-                    </sub>
-                </div>
-
-                <div class="form-group">
-                    <label for="first_name">First Name</label>
-                    <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" value="<?php echo xss_filter($_SESSION['first_name']); ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" value="<?php echo xss_filter($_SESSION['last_name']); ?>">
-                </div>
-
-                <div class="form-group mt-4">
-                    <label for="headline">Headline</label>
-                    <input type="text" id="headline" name="headline" class="form-control" placeholder="headline" value="<?php echo xss_filter($_SESSION['headline']); ?>">
-                </div>
-
-                <div class="form-group">
-                    <label for="bio">Profile Details</label>
-                    <textarea type="text" id="bio" name="bio" class="form-control" placeholder="Tell us about yourself..."><?php echo xss_filter($_SESSION['bio']); ?></textarea>
-                </div>
-
-                <div class="form-group mb-5">
-                    <label>Gender</label>
-                    <div class="custom-control custom-radio custom-control">
-                        <input type="radio" id="male" name="gender" class="custom-control-input" value="m" <?php if ($_SESSION['gender'] == 'm') echo 'checked' ?>>
-                        <label class="custom-control-label" for="male">Male</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control">
-                        <input type="radio" id="female" name="gender" class="custom-control-input" value="f" <?php if ($_SESSION['gender'] == 'f') echo 'checked' ?>>
-                        <label class="custom-control-label" for="female">Female</label>
-                    </div>
-                </div>
-
-                <hr>
-                    <span class="h5 font-weight-normal text-muted mb-4">Password Edit</span>
-                    <br>
-                    <sub class="text-danger mb-4">
-                        <?php
-                            if (isset($_SESSION['ERRORS']['passworderror']))
-                                echo $_SESSION['ERRORS']['passworderror'];
-
-                        ?>
-                    </sub>
-                    <br><br>
-
-                    <div class="form-group">
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Current Password" autocomplete="new-password">
-                    </div>
-
-                    <div class=" form-group">
-                        <input type="password" id="newpassword" name="newpassword" class="form-control" placeholder="New Password" autocomplete="new-password">
-                    </div>
-
-                    <div class=" form-group mb-5">
-                        <input type="password" id="confirmpassword" name="confirmpassword" class="form-control" placeholder="Confirm Password" autocomplete="new-password">
-                    </div>
-
-                    <button class="btn btn-lg btn-primary btn-block mb-5" type="submit" name='update-profile'>Confirm Changes</button>
-                
-            </form>
-
-		</div>
+<form class="form-horizontal" method="POST" action="profile_edit.inc.php" enctype="multipart/form-data">
+<div class="form-group">
+<label for="email" class="col-sm-3 control-label">Email</label>
+<div class="col-sm-9">
+<input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
+</div>
+</div>
+<div class="form-group">
+<label for="username" class="col-sm-3 control-label">Username</label>
+<div class="col-sm-9">
+<input type="text" class="form-control" id="username" name="username" value="<?php echo $uname; ?>" required>
+</div>
+</div>
+<div class="form-group">
+<label for="phone" class="col-sm-3 control-label">Phone Number</label>
+<div class="col-sm-9">
+<input type="text" class="form-control" id="phone" name="phone" value="0<?php echo $pnumber; ?>" required>
+</div>
+</div>
+<div class="form-group">
+<label for="firstname" class="col-sm-3 control-label">Firstname</label>
+<div class="col-sm-9">
+<input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo $fname; ?>" required>
+</div>
+</div>
+<div class="form-group">
+<label for="lastname" class="col-sm-3 control-label">Lastname</label>
+<div class="col-sm-9">
+<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo $lname; ?>" required>
+</div>
+</div>
+<div class="form-group">
+<label for="password" class="col-sm-3 control-label">Password</label>
+<div class="col-sm-9"> 
+<input type="password" class="form-control" id="password" name="password" value="" placeholder="Input your new password" required>
+</div>
+</div>
+<div class="form-group">
+<label for="photo" class="col-sm-3 control-label">Photo</label>
+<div class="col-sm-9">
+<input type="file" class="form-control" id="photo" name="photo" >
+</div>
+</div>
+<hr>
+<div class="form-group">
+<label for="curr_password" class="col-sm-3 control-label">Current Password:</label>
+<div class="col-sm-9">
+<input type="password" class="form-control" id="curr_password" name="curr_password" placeholder="Input current password to save changes" required>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"> Close</button>
+<button type="submit" class="btn btn-success btn-flat" value="Upload" name="save"> Save</button>
+</form>
+</div>
 	</div>
 	</div>
 </div>
@@ -506,15 +341,7 @@ include('database.php');
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-				 
-				
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-				
-				<a href="#" class="btn btn-center btn-success btn-circle btn-lg">
-                                        <i class="fas fa-check"></i>
-                                    </a>
-				
-				
 				</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -542,11 +369,10 @@ include('database.php');
     <script src="js/demo/datatables-demo.js"></script>
     <!-- Page level custom scripts -->
     <script src="js/zoza.js"></script>
-    <?php if(isset($_SESSION['auth'])) { ?> 
-
-<script src="js/check_inactive.js"></script>
-    
-<?php } ?>
+    <?php 
+  include 'footer.php';
+    ?>
 </body>
 
 </html>
+<?php }?>

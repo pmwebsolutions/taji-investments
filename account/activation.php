@@ -1,7 +1,9 @@
 <?php
 session_start();
 include 'header.php';
-?>
+if(!isset($_SESSION['userIsLoggedIn'])){
+    header('location: ../index.php');
+}?>
 <!doctype html>
 <html lang="en">
 
@@ -49,11 +51,11 @@ if(isset($_SESSION['msg'])){
                         <div class="p-5">
 						<div class="text-center">
 	
-                                        <h1 class="h4 text-gray-900 mb-4">Activate Account!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Activate Your Account!</h1>
                                     </div>
-						
-<h2>Mpesa Payment(Taji Investments) &nbsp &nbsp <a class="btn btn-success" href="process.php?logout">Refresh</a></h2>
-<h4>Pay 300ksh To Till number 8100616</h4>
+                                  <center>  <p>PAY KES 300 TO TILL NUMBER <strong>8100616</strong> (TAJINVESTMENTS)</p>	</center>	
+
+&nbsp&nbsp&nbsp&nbsp&nbsp<caption>After payment confirmation click the refresh button to login to your dashboard</caption>
 <?php if(isset($msg)){
     foreach($msg as $message){
         ?>
@@ -85,35 +87,31 @@ if(isset($_SESSION['msg'])){
                                         </button> <hr>
 														
 </form>
-
+<a style="float:right" class="btn btn-success" href="process.php?logout">Refresh</a>
 <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="?signup">Create an Account!</a>
-                                    </div>
-									<footer class="sticky-footer bg-white">
+                                    
+                                    
+									
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer class="sticky-footer bg-white">
                                 <div class="container my-auto">
                                 <div class="copyright text-center my-auto">
                                <span>Copyright &copy; Taji Investments 2022</span>
                                 </div>
                                 </div>
                                 </footer>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
-
  
 <script src="user/assets/js/jquery.min.js" type="7b1cef93aab1c40878c2fff8-text/javascript"></script>
 
@@ -129,80 +127,6 @@ if(isset($_SESSION['msg'])){
 <script src="user/assets/js/themeColors.js" type="7b1cef93aab1c40878c2fff8-text/javascript"></script>
 
 <script src="user/assets/js/custom.js" type="7b1cef93aab1c40878c2fff8-text/javascript"></script>
-<script type="7b1cef93aab1c40878c2fff8-text/javascript"> 
-		function myFunction() {
-			var element, name, arr;
-			element = document.getElementById("loadSpin");
-			name = "spinner";
-			arr = element.className.split(" ");
-			if (arr.indexOf(name) == -1) {
-				element.className += " " + name;
-			}
-			var element1, name1, arr1;
-			element1 = document.getElementById("loadMessage");
-			name1 = "alerter";
-			arr1 = element1.className.split(" ");
-			if (arr1.indexOf(name1) == -1) {
-				element1.className += " " + name1;
-				element1.innerHTML = "<h6> Please Wait and check your phone..<br><strong>DO NOT CLOSE THIS WINDOW</strong></h6>";
-			}
-			
-			var element2 = document.getElementById("disablediv");
-			element2.classList.add("disabled");
-			
-			
-		}      
-	</script>
-<style
-{
-	pointer-events: none;
-}
-.spinner {
-	position: absolute;
-	left: 50%;
-	top: 20%;
-	height:60px;
-	width:60px;
-	margin-left: -50px;
-	margin-top: -50px;
-	-webkit-animation: rotation .6s infinite linear;
-	-moz-animation: rotation .6s infinite linear;
-	-o-animation: rotation .6s infinite linear;
-	animation: rotation .6s infinite linear;
-	border-left:6px solid rgba(0,174,239,.15);
-	border-right:6px solid rgba(0,174,239,.15);
-	border-bottom:6px solid rgba(0,174,239,.15);
-	border-top:6px solid rgba(0,174,239,.8);
-	border-radius:100%;
-}
-@-webkit-keyframes rotation {
-	from {-webkit-transform: rotate(0deg);}
-	to {-webkit-transform: rotate(359deg);}
-}
-@-moz-keyframes rotation {
-	from {-moz-transform: rotate(0deg);}
-	to {-moz-transform: rotate(359deg);}
-}
-@-o-keyframes rotation {
-	from {-o-transform: rotate(0deg);}
-	to {-o-transform: rotate(359deg);}
-}
-@keyframes rotation {
-	from {transform: rotate(0deg);}
-	to {transform: rotate(359deg);}
-}
-.alerter {
-	position: absolute;
-	left: 50%;
-	top: 20%;
-	margin-left: -100px;
-	margin-top: 10px;
-	color: green;
-}
-
-</style>
-<script src="https://kit.fontawesome.com/3b5f670a1d.js" crossorigin="anonymous" type="7b1cef93aab1c40878c2fff8-text/javascript"></script>
-<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7b1cef93aab1c40878c2fff8-|49" defer=""></script>
 <?php 
   include 'footer.php';
     ?>

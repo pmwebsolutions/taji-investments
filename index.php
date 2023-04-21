@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="PM Web Solutions, https://omitihenry.rf.gd, Erick Ndwiga">
-      <link rel="shortcut icon" type="image/x-icon" href="user/assets/images/brand/Taji.PNG" />
+    <meta name="description" content="Register an account with us today and stand a chance to earn extra cash. PS: For 18+ only">
+    <link rel="shortcut icon" type="image/x-icon" href="user/assets/images/brand/Taji.PNG" />
     
     <title>Taji Investments</title>
 

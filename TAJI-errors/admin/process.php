@@ -27,59 +27,23 @@ if(isset($_GET['activate'])){
 }*/
 
  
-//this is for login
-if(isset($_GET['login'])){
-    if($_POST['username']=='' || $_POST['password']==''){
-						$_SESSION['msg'][]='All fields are required';
-				   header('location:../?login');
-					}else{
-						$user = checkUser($_POST);
-						if(is_array($user) ){
-						
-				$_SESSION['userdata']=$user;
-				$_SESSION['userIsLoggedIn']=true;
-				header('location:home.php');
-						}else{
-							$_SESSION['msg'][]='Incorrect username/Password !';
-							header('location:../?login');
-							}
-						$_SESSION['userdata']=$user;
-						$_SESSION['username']=$_POST['username'];
-						
-					//header('location:home.php');
-					
-					
-					} 	  
-						 
-					
-		
-		
-		
-    
-	
-	}
 
     if(isset($_GET['adminlogin'])){
     if($_POST['username']=='' || $_POST['password']==''){
 						$_SESSION['msg'][]='All fields are required';
-				   header('location:../?login');
+				   header('location:./?login');
 					}else{
 						$user = checkAdmin($_POST);
 						if(is_array($user) ){
 						
 				$_SESSION['userdata']=$user;
 				$_SESSION['userIsLoggedIn']=true;
+				$_SESSION['username']=$_POST['username'];
 				header('location:dashboard.php');
 						}else{
 							$_SESSION['msg'][]='Incorrect username/Password !';
-							header('location:../?login');
+							header('location:./?login');
 							}
-						$_SESSION['userdata']=$user;
-						$_SESSION['username']=$_POST['username'];
-						
-					//header('location:home.php');
-					
-					
 					} 	  
 						 
 					

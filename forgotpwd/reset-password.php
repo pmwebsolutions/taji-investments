@@ -7,17 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-     <link rel="shortcut icon" type="image/x-icon" href="http://localhost/taji.or.ke/images/Taji.PNG" />
+     <link rel="shortcut icon" type="image/x-icon" href="Taji.png" />
     <title>Taji - Reset Password</title>
 
     <!-- Custom fonts for this template-->
-    <link href="http://localhost/taji.or.ke/account/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://tajinvestments.org/account/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="http://localhost/taji.or.ke/account/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 <body class="bg-gradient-info">
@@ -56,7 +56,7 @@ if ($row==""){
 $error .= '<h2>Invalid Link</h2>
 <p>The link is invalid/expired. Either you did not copy the correct link from the email, 
 or you have already used the key in which case it is deactivated.</p>
-<p class="btn btn-primary btn-user btn-block"><a href="http://localhost/taji.or.ke/forgotpwd/">Click here</a> to try again.</p>';
+<p class="btn btn-primary btn-user btn-block"><a href="https://tajinvestments.org/forgotpwd/">Click here</a> to try again.</p>';
 	}else{
 	$row = mysqli_fetch_assoc($query);
 	$expDate = $row['expDate'];

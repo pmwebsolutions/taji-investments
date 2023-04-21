@@ -4,7 +4,5 @@ if (isset($_SESSION['auth']))
     $_SESSION['expire'] = ALLOWED_INACTIVITY_TIME;
 
 
-//check_remember_me();
-
 ?>
 

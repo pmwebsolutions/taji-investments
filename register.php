@@ -38,7 +38,8 @@ if(isset($msg)){
 					<input class="input100 border-start-0 ms-0  form-control form-control-user" id="lastname" type="text" name="lastname" placeholder="Lastname" value="" data-required="true" required>
 					</div>
   <div class="col-sm-6 mb-3 ">
-					<input class="input100 border-start-0 ms-0 form-control form-control-user" id="username" type="text" name="username" placeholder="Username" value="" data-required="true" required>
+					<input class="input100 border-start-0 ms-0 form-control form-control-user" id="username" type="text" name="username" placeholder="Username" value="" data-required="true" onkeyup="checkuser()" required>
+					<span id="username_status"></span>
 					</div>
 		<div class="col-sm-6 mb-3">
 					<input id="phone" class="border-start-0 ms-0 form-control form-control-user" type="number" data-type="number" placeholder="Enter phone number"  data-required="true" name="number" minlength="7" required>
@@ -58,8 +59,7 @@ if(isset($msg)){
   <div class="col-sm-6 mb-3">
     <input type="text" class="input100 border-start-0 ms-0 form-control form-control-user" value="<?=isset($_GET['refcode'])?$_GET['refcode']:''?>" name="ref_code" placeholder="Referal Code" id="exampleInputPassword1">
   </div>
-  <input class="input--style-4" type="hidden" data-required="" style="text-transform:capitalize" name="referral" value="" readonly>
-					<label class="custom-control custom-checkbox mt-4">
+  					<label class="custom-control custom-checkbox mt-4">
 					<input type="checkbox" class="custom-control-input" required>
 					<span class="custom-control-label">Agree to the <a href="terms.html">Terms and Conditions.</a></span>
 					</label>
@@ -92,5 +92,29 @@ if(isset($msg)){
                                 </div>
                                 </div>
                                 </footer>
-
+<script>
+function checkuser(){
+	var name=document.getElementById("username").value;
+	if(name){
+		$.ajax({
+			type: 'post',
+			url: 'account/checkdata.php',
+			data: {
+				username:name,
+				},
+			success: function(response){
+				$('#username_status').html(response);
+				if(response =="OK"){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		});
+	}else{
+		$('#username_status').html("");
+		return false;
+	}
+}
+</script>
 </div>

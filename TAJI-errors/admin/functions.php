@@ -12,7 +12,7 @@ require_once('database.php');
 	
     }
 	
-	function mail1(){
+	/*function mail1(){
 	$db=$GLOBALS['db'];
 	$query="select * from content where title  = 'Deposit Bonus'"or die(mysqli_error());
 	$mission_query = mysqli_query($db,$query);
@@ -30,7 +30,7 @@ require_once('database.php');
 	return $user;
 	
     }
-	
+	*/
 	function fetchAllUnread(){
 	define('DBINFO', 'mysql:host=localhost;dbname=twiga2');
     define('DBUSER','root');
@@ -61,9 +61,10 @@ require_once('database.php');
     }
 	function checkAdmin(){
 $db=$GLOBALS['db'];
-$username=$_POST['username'];
-$password=$_POST['password'];
-$query="SELECT * FROM admin WHERE username='$username'AND password='$password'";
+$username=mysqli_real_escape_string($db,$_POST['username']);
+$password=mysqli_real_escape_string($db,$_POST['password']);
+$safe_pass=md5($password);
+$query="SELECT * FROM admin WHERE username='$username'AND password='$safe_pass'";
 $runQuery=mysqli_query($db,$query);
 $user=mysqli_fetch_all($runQuery,MYSQLI_ASSOC);
 if(count($user)>0)  {
